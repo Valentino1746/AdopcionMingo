@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+    <style name="Theme.MiAndroid" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Base.Theme.MiAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+    -->
+    <style name="Theme.MiAndroid" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.MiMenu" parent="Theme.Material3.DayNight" />
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MiAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+</resources>
