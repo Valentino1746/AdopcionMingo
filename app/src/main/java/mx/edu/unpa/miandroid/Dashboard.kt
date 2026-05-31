@@ -55,7 +55,26 @@ class Dashboard : AppCompatActivity() {
         //Toast.makeText(this, "Bienvenido: $usuario", Toast.LENGTH_LONG).show()
 
         recycler = findViewById(R.id.recyclerUsers)
-        adapter = UsuarioAdapter(emptyList())
+        //adapter = UsuarioAdapter(emptyList())
+
+        adapter = UsuarioAdapter(emptyList()){ usuario ->
+
+            //Click
+            //Toast.makeText(this, "Seleccionado: ${usuario.nombre}", Toast.LENGTH_LONG).show()
+
+            // Enviar a layout
+            val intent = Intent(this, DetalleUsuario::class.java)
+            /*intent.putExtra("foto", usuario.foto)
+            intent.putExtra("nombre", usuario.nombre)
+            intent.putExtra("email", usuario.email)
+            intent.putExtra("telefono", usuario.telefono)*/
+
+            intent.putExtra("usuario", usuario)
+
+            startActivity(intent)
+        }
+
+
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
 

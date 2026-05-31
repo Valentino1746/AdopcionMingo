@@ -1,6 +1,7 @@
 package mx.edu.unpa.miandroid.model
 
 import android.text.Editable
+import java.io.Serializable
 
 data class Usuario(
     var id: Int? = null,
@@ -11,6 +12,6 @@ data class Usuario(
     var telefono: String? = null,
     var contrasena: String,
     var activo: Boolean = false,
-    var fechaRegistro: String? = null
-
-)
+    var fechaRegistro: String? = null,
+    var foto: String? = null
+) : Serializable

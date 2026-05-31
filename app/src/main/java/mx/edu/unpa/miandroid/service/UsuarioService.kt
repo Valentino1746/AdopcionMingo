@@ -1,9 +1,12 @@
 package mx.edu.unpa.miandroid.service
 
 import android.text.Editable
+import mx.edu.unpa.miandroid.model.UploadFile
 import mx.edu.unpa.miandroid.model.Usuario
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface UsuarioService {
     @GET("usuario/app")
@@ -23,5 +26,13 @@ interface UsuarioService {
 
     @DELETE("usuario/app/{id}")
     fun eliminarUsuario(@Path("id") id: Int): Call<Void>
+
+    // upload image
+    @Multipart
+    @POST("api/upload")
+    fun uploadImage(
+        @Part file: MultipartBody.Part
+    ): Call<UploadFile>
+
 
 }
