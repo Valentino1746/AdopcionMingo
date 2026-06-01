@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores base del proyecto viejo (mantener para no romper MiAndroid) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,8 +8,27 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name ="lytPrimary">#86CBC1</color>
-    <color name ="txtPrimary">#077b64</color>
-    <color name ="btnPrimary">#006E59</color>
-</resources>
+    <color name="lytPrimary">#86CBC1</color>
+    <color name="txtPrimary">#077b64</color>
+    <color name="btnPrimary">#006E59</color>
 
+    <!-- AdoptaMe palette -->
+    <color name="naranja_primario">#F97316</color>
+    <color name="morado_adoptame">#8B5CF6</color>
+    <color name="fondo_principal">#F9FAFB</color>
+    <color name="texto_principal">#1F2937</color>
+    <color name="gris_subtitulo">#6B7280</color>
+    <color name="gris_hint">#9CA3AF</color>
+
+    <!-- Estados de adopción -->
+    <color name="color_disponible">#16A34A</color>
+    <color name="color_no_disponible">#F97316</color>
+
+    <!-- Badges -->
+    <color name="badge_disponible_bg">#D1FAE5</color>
+    <color name="badge_disponible_text">#065F46</color>
+    <color name="badge_proceso_bg">#FEF3C7</color>
+    <color name="badge_proceso_text">#92400E</color>
+    <color name="badge_adoptado_bg">#F3F4F6</color>
+    <color name="badge_adoptado_text">#6B7280</color>
+</resources>

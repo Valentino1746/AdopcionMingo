@@ -1,4 +1,4 @@
-package mx.edu.unpa.miandroid
+/*package mx.edu.unpa.miandroid
 
 import android.content.Intent
 import android.os.Bundle
@@ -76,3 +76,4 @@ class Account : AppCompatActivity() {
 
 
 }
+*/
