@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.edu.unpa.miandroid.adapter.CategoriaAdapter
 import mx.edu.unpa.miandroid.client.RetrofitClient
 import mx.edu.unpa.miandroid.model.CategoriaDisponibilidad
+import androidx.activity.OnBackPressedCallback
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,9 +31,23 @@ class CategoriasActivity : AppCompatActivity() {
 
         prefs = getSharedPreferences("sesion_adoptame", MODE_PRIVATE)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = "AdoptaMe"
+        // Botón físico de regresar → cierra sesión y va al login
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                cerrarSesionYVolverAlLogin()
+            }
+        })
+
+        // FAB para agregar mascota — siempre visible y accesible
+        findViewById<FloatingActionButton>(R.id.fabAgregar).setOnClickListener {
+            startActivity(Intent(this, RegistrarMascotaActivity::class.java))
+        }
+
+        // Botón logout en la parte inferior
+        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnLogout)
+            .setOnClickListener {
+                cerrarSesionYVolverAlLogin()
+            }
 
         val recycler = findViewById<RecyclerView>(R.id.recyclerCategorias)
         recycler.layoutManager = GridLayoutManager(this, 2)
@@ -50,7 +66,7 @@ class CategoriasActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        cargarCategorias() // Refresca disponibilidad al volver
+        cargarCategorias()
     }
 
     private fun cargarCategorias() {
@@ -71,24 +87,13 @@ class CategoriasActivity : AppCompatActivity() {
             })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_categorias, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_agregar -> {
-                startActivity(Intent(this, RegistrarMascotaActivity::class.java))
-                true
-            }
-            R.id.action_logout -> {
-                prefs.edit().clear().apply()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    private fun cerrarSesionYVolverAlLogin() {
+        prefs.edit().clear().apply()
+        val intent = Intent(this, LoginActivity::class.java).apply {
+            // Limpia el back stack completo para que no pueda volver con el back
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
+        startActivity(intent)
+        finish()
     }
 }

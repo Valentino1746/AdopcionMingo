@@ -24,11 +24,14 @@ class ListaMascotasActivity : AppCompatActivity() {
         val idTipo     = intent.getIntExtra("idTipoMascota", -1)
         val nombreTipo = intent.getStringExtra("nombreTipo") ?: "Mascotas"
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = nombreTipo
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        // Título en el header
+        findViewById<android.widget.TextView>(R.id.txtTituloLista).text = nombreTipo
+
+        // Botón regresar del header inferior — fácil de tocar
+        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnRegresar)
+            .setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
 
         val recycler = findViewById<RecyclerView>(R.id.recyclerMascotas)
         recycler.layoutManager = LinearLayoutManager(this)

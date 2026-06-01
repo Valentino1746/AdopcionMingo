@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import mx.edu.unpa.miandroid.client.RetrofitClient
 import mx.edu.unpa.miandroid.model.CrearUsuarioRequest
+import mx.edu.unpa.miandroid.util.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +35,11 @@ class CrearrCuentaActivity : AppCompatActivity() {
         // Edge cases del lado Android (validación local antes de llamar la API)
         if (nombre.isEmpty() || apPaterno.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Completa los campos obligatorios", Toast.LENGTH_SHORT).show()
+            return
+        }
+        // Validación Gmail — reemplaza el android.util.Patterns anterior
+        if (!ValidationUtils.isGmail(email)) {
+            Toast.makeText(this, "Solo se aceptan correos Gmail (@gmail.com)", Toast.LENGTH_SHORT).show()
             return
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {

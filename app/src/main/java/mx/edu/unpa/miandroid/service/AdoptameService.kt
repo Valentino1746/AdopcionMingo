@@ -9,6 +9,8 @@ import mx.edu.unpa.miandroid.model.LoginRequest
 import mx.edu.unpa.miandroid.model.LoginResponse
 import mx.edu.unpa.miandroid.model.Mascota
 import mx.edu.unpa.miandroid.model.TipoMascota
+import mx.edu.unpa.miandroid.model.UploadFile
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -47,4 +49,11 @@ interface AdoptameService {
         @Query("idTipo") idTipo: Int,
         @Body request: CrearMascotaRequest
     ): Call<Mascota>
+
+    // Upload de imagen — mismo endpoint que el proyecto viejo
+    @Multipart
+    @POST("api/upload")
+    fun uploadImage(
+        @Part file: MultipartBody.Part
+    ): Call<UploadFile>
 }

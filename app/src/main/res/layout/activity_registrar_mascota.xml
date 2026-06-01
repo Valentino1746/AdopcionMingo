@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fondo_principal"
@@ -46,29 +47,108 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <!-- Sección de foto -->
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Foto de la mascota"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Preview de imagen — oculto hasta que se seleccione -->
+            <ImageView
+                android:id="@+id/imgPreviewMascota"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_input_background"
+                android:contentDescription="Vista previa de la mascota"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <!-- Botones de foto en fila -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTomarFoto"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="📷 Cámara"
+                    android:textSize="13sp"
+                    app:backgroundTint="@color/texto_principal"
+                    app:cornerRadius="24dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnElegirGaleria"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="🖼 Galería"
+                    android:textSize="13sp"
+                    app:backgroundTint="@color/morado_adoptame"
+                    app:cornerRadius="24dp" />
+
+            </LinearLayout>
+
+            <!-- Progreso y estado de subida -->
+            <ProgressBar
+                android:id="@+id/progressSubida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtEstadoFoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="4dp"
-                android:text="Completa la información básica para publicarlo en adopción"
-                android:textColor="@color/gris_subtitulo"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <!-- Nombre -->
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="20dp" android:text="Nombre"
-                android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
-            <EditText android:id="@+id/etNombre" android:layout_width="match_parent"
-                android:layout_height="52dp" android:layout_marginTop="6dp"
-                android:background="@drawable/ic_input_background" android:hint="Ej. Luna, Max, Toby"
-                android:inputType="text" android:paddingStart="16dp" android:paddingEnd="16dp"
-                android:textColorHint="@color/gris_hint"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Nombre"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-            <!-- Tipo de mascota (Spinner) -->
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="14dp" android:text="Tipo de mascota"
-                android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:hint="Ej. Luna, Max, Toby"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="@color/gris_hint" />
+
+            <!-- Tipo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Tipo de mascota"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
             <Spinner
                 android:id="@+id/spinnerTipo"
                 android:layout_width="match_parent"
@@ -79,48 +159,78 @@
                 android:paddingEnd="12dp" />
 
             <!-- Raza -->
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="14dp" android:text="Raza"
-                android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
-            <EditText android:id="@+id/etRaza" android:layout_width="match_parent"
-                android:layout_height="52dp" android:layout_marginTop="6dp"
-                android:background="@drawable/ic_input_background" android:hint="Ej. Mestizo, labrador, siamés"
-                android:inputType="text" android:paddingStart="16dp" android:paddingEnd="16dp"
-                android:textColorHint="@color/gris_hint"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Raza"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-            <!-- Sexo (RadioGroup) -->
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="14dp" android:text="Sexo"
-                android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/etRaza"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:hint="Ej. Mestizo, labrador, siamés"
+                android:inputType="text"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="@color/gris_hint" />
+
+            <!-- Sexo -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="Sexo"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
             <RadioGroup
                 android:id="@+id/radioGroupSexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:orientation="horizontal">
-                <RadioButton android:id="@+id/radioMacho" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="Macho"
-                    android:textColor="@color/texto_principal" android:layout_marginEnd="24dp"/>
-                <RadioButton android:id="@+id/radioHembra" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="Hembra"
-                    android:textColor="@color/texto_principal"/>
+
+                <RadioButton
+                    android:id="@+id/radioMacho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="Macho"
+                    android:textColor="@color/texto_principal" />
+
+                <RadioButton
+                    android:id="@+id/radioHembra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hembra"
+                    android:textColor="@color/texto_principal" />
+
             </RadioGroup>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRegistrar"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/ic_button_primary_background"
                 android:text="Registrar"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:backgroundTint="@color/naranja_primario"
+                app:cornerRadius="26dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
                 android:gravity="center"
                 android:text="Ayúdalo a encontrar una familia"
                 android:textColor="@color/gris_hint"

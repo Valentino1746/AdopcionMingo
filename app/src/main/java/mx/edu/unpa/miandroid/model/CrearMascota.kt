@@ -5,5 +5,6 @@ data class CrearMascotaRequest(
     val raza: String,
     val sexo: String,
     val edadAproximada: String,
-    val descripcion: String
+    val descripcion: String,
+    val urlFoto: String? = null
 )

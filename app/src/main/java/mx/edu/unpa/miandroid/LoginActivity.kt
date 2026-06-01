@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import mx.edu.unpa.miandroid.client.RetrofitClient
 import mx.edu.unpa.miandroid.model.LoginRequest
 import mx.edu.unpa.miandroid.model.LoginResponse
+import mx.edu.unpa.miandroid.util.ValidationUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,6 +57,11 @@ class LoginActivity : AppCompatActivity() {
         // Edge case: campos vacíos
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (!ValidationUtils.isGmail(email)){
+            Toast.makeText(this, "Email no válido. Solo se aceptan correos Gmail (@gmail.com)", Toast.LENGTH_SHORT).show()
             return
         }
 

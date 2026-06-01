@@ -12,5 +12,6 @@ data class Mascota(
     val estadoAdopcion: String,
     val tipoMascotaDescripcion: String,
     val idTipoMascota: Int,
+    val urlFoto: String?,
     val fechaPublicacion: String
 ) : Serializable

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mx.edu.unpa.miandroid.R
+import mx.edu.unpa.miandroid.client.RetrofitClient
 import mx.edu.unpa.miandroid.model.Mascota
 
 class MascotaAdapter(
@@ -38,20 +39,35 @@ class MascotaAdapter(
         val ctx = holder.itemView.context
 
         // Imagen remota con Glide, fallback a drawable local
-        val imagenRes = mapOf(
+        val imagenGenericaRes = mapOf(
             "Perro"   to R.drawable.ic_imagen_perrito_foreground,
             "Gato"    to R.drawable.ic_imagen_gatito_foreground,
             "Hamster" to R.drawable.ic_imagen_hamster_foreground,
             "Loro"    to R.drawable.ic_imagen_loro_foreground
         )[mascota.tipoMascotaDescripcion] ?: R.drawable.ic_launcher_foreground
 
-        holder.imgMascota.setImageResource(imagenRes)
+        holder.imgMascota.setImageResource(imagenGenericaRes)
 
         holder.txtNombre.text = mascota.nombre
         holder.txtTipo.text   = mascota.tipoMascotaDescripcion
         holder.txtRaza.text   = mascota.raza ?: "Mestizo"
         holder.txtSexo.text   = mascota.sexo
         holder.txtEstado.text = mascota.estadoAdopcion.replace("_", " ")
+
+        // Si tiene foto subida al servidor la carga con Glide,
+        // si no, usa la imagen genérica local del tipo
+        if (!mascota.urlFoto.isNullOrBlank()) {
+            val urlCompleta = RetrofitClient.BASE_URL.trimEnd('/') + mascota.urlFoto
+            Glide.with(ctx)
+                .load(urlCompleta)
+                .placeholder(imagenGenericaRes)
+                .error(imagenGenericaRes)
+                .centerCrop()
+                .into(holder.imgMascota)
+        } else {
+            holder.imgMascota.setImageResource(imagenGenericaRes)
+        }
+        
 
         // Color del badge según estado
         val (bgColor, textColor) = when (mascota.estadoAdopcion) {

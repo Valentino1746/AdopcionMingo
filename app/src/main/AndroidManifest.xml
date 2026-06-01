@@ -7,6 +7,12 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Permiso para leer de la galería en Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Para Android 12 y anteriores -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -25,7 +31,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ListaMascotasActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".CategoriasActivity"/>
         <activity
             android:name=".RegistrarMascotaActivity"
             android:exported="false" />
@@ -38,22 +45,22 @@
         <activity
             android:name=".CrearrCuentaActivity"
             android:exported="false" />
-        <activity
-            android:name=".DetalleUsuario"
-            android:exported="false" />
-        <activity
-            android:name=".Account"
-            android:exported="false" />
-        <activity
-            android:name=".Dashboard"
-            android:exported="false"
-            android:theme="@style/Theme.MiMenu" />
         <activity android:name=".LoginActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 
