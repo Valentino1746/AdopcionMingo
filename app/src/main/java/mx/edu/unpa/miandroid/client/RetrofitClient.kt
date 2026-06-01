@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     // Cambia esta IP por la de tu servidor Spring Boot
-    const val BASE_URL = "http://192.168.5.9:8181/"
+    const val BASE_URL = "http://192.168.1.121:8181/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

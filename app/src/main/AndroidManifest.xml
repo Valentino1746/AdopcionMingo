@@ -6,12 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Permiso para leer de la galería en Android 13+ -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-    <!-- Para Android 12 y anteriores -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permiso para leer de la galería en Android 13+ -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Para Android 12 y anteriores -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
 
     <uses-feature
@@ -30,9 +28,13 @@
         android:theme="@style/Theme.MiAndroid"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetalleMascotaActivity"
+            android:exported="false"
+            android:parentActivityName=".ListaMascotasActivity"/>
+        <activity
             android:name=".ListaMascotasActivity"
             android:exported="false"
-            android:parentActivityName=".CategoriasActivity"/>
+            android:parentActivityName=".CategoriasActivity" />
         <activity
             android:name=".RegistrarMascotaActivity"
             android:exported="false" />
@@ -45,9 +47,12 @@
         <activity
             android:name=".CrearrCuentaActivity"
             android:exported="false" />
-        <activity android:name=".LoginActivity" android:exported="true">
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -61,7 +66,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

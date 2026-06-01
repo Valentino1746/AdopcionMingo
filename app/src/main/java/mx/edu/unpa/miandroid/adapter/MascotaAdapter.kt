@@ -13,17 +13,28 @@ import mx.edu.unpa.miandroid.client.RetrofitClient
 import mx.edu.unpa.miandroid.model.Mascota
 
 class MascotaAdapter(
-    private var lista: List<Mascota>
+    private var lista: List<Mascota>,
+    private val onClick: (Mascota) -> Unit   // ← SRP: el adapter notifica, el caller decide
 ) : RecyclerView.Adapter<MascotaAdapter.ViewHolder>() {
 
+    companion object {
+        // Fix del code smell: el Map se crea UNA sola vez, no en cada bind
+        private val ANIMAL_IMAGE_MAP = mapOf(
+            "Perro"   to R.drawable.ic_imagen_perrito_foreground,
+            "Gato"    to R.drawable.ic_imagen_gatito_foreground,
+            "Hamster" to R.drawable.ic_imagen_hamster_foreground,
+            "Loro"    to R.drawable.ic_imagen_loro_foreground
+        )
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imgMascota:    ImageView = view.findViewById(R.id.imgMascota)
-        val txtNombre:     TextView  = view.findViewById(R.id.txtNombreMascota)
-        val txtTipo:       TextView  = view.findViewById(R.id.txtTipoMascota)
-        val txtRaza:       TextView  = view.findViewById(R.id.txtRaza)
-        val txtSexo:       TextView  = view.findViewById(R.id.txtSexo)
-        val txtEstado:     TextView  = view.findViewById(R.id.txtEstadoDescripcion)
-        val btnAdopcion:   Button    = view.findViewById(R.id.btnEnAdopcion)
+        val imgMascota:  ImageView = view.findViewById(R.id.imgMascota)
+        val txtNombre:   TextView  = view.findViewById(R.id.txtNombreMascota)
+        val txtTipo:     TextView  = view.findViewById(R.id.txtTipoMascota)
+        val txtRaza:     TextView  = view.findViewById(R.id.txtRaza)
+        val txtSexo:     TextView  = view.findViewById(R.id.txtSexo)
+        val txtEstado:   TextView  = view.findViewById(R.id.txtEstadoDescripcion)
+        val btnAdopcion: Button    = view.findViewById(R.id.btnEnAdopcion)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,15 +49,8 @@ class MascotaAdapter(
         val mascota = lista[position]
         val ctx = holder.itemView.context
 
-        // Imagen remota con Glide, fallback a drawable local
-        val imagenGenericaRes = mapOf(
-            "Perro"   to R.drawable.ic_imagen_perrito_foreground,
-            "Gato"    to R.drawable.ic_imagen_gatito_foreground,
-            "Hamster" to R.drawable.ic_imagen_hamster_foreground,
-            "Loro"    to R.drawable.ic_imagen_loro_foreground
-        )[mascota.tipoMascotaDescripcion] ?: R.drawable.ic_launcher_foreground
-
-        holder.imgMascota.setImageResource(imagenGenericaRes)
+        val fallbackRes = ANIMAL_IMAGE_MAP[mascota.tipoMascotaDescripcion]
+            ?: R.drawable.ic_launcher_foreground
 
         holder.txtNombre.text = mascota.nombre
         holder.txtTipo.text   = mascota.tipoMascotaDescripcion
@@ -54,22 +58,18 @@ class MascotaAdapter(
         holder.txtSexo.text   = mascota.sexo
         holder.txtEstado.text = mascota.estadoAdopcion.replace("_", " ")
 
-        // Si tiene foto subida al servidor la carga con Glide,
-        // si no, usa la imagen genérica local del tipo
         if (!mascota.urlFoto.isNullOrBlank()) {
             val urlCompleta = RetrofitClient.BASE_URL.trimEnd('/') + mascota.urlFoto
             Glide.with(ctx)
                 .load(urlCompleta)
-                .placeholder(imagenGenericaRes)
-                .error(imagenGenericaRes)
+                .placeholder(fallbackRes)
+                .error(fallbackRes)
                 .centerCrop()
                 .into(holder.imgMascota)
         } else {
-            holder.imgMascota.setImageResource(imagenGenericaRes)
+            holder.imgMascota.setImageResource(fallbackRes)
         }
-        
 
-        // Color del badge según estado
         val (bgColor, textColor) = when (mascota.estadoAdopcion) {
             "Disponible" -> Pair(R.color.badge_disponible_bg, R.color.badge_disponible_text)
             "En_proceso" -> Pair(R.color.badge_proceso_bg,    R.color.badge_proceso_text)
@@ -78,6 +78,9 @@ class MascotaAdapter(
         }
         holder.btnAdopcion.setBackgroundColor(ctx.getColor(bgColor))
         holder.btnAdopcion.setTextColor(ctx.getColor(textColor))
+
+        // Click en la tarjeta completa
+        holder.itemView.setOnClickListener { onClick(mascota) }
     }
 
     fun actualizar(nuevaLista: List<Mascota>) {

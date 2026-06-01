@@ -1,5 +1,6 @@
 package mx.edu.unpa.miandroid
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +36,12 @@ class ListaMascotasActivity : AppCompatActivity() {
 
         val recycler = findViewById<RecyclerView>(R.id.recyclerMascotas)
         recycler.layoutManager = LinearLayoutManager(this)
-        adapter = MascotaAdapter(emptyList())
+        adapter = MascotaAdapter(emptyList()) { mascota ->
+            val intent = Intent(this, DetalleMascotaActivity::class.java).apply {
+                putExtra(DetalleMascotaActivity.EXTRA_MASCOTA, mascota)
+            }
+            startActivity(intent)
+        }
         recycler.adapter = adapter
 
         cargarMascotas(idTipo)
