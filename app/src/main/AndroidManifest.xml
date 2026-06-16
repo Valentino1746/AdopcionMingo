@@ -32,6 +32,21 @@
             android:exported="false"
             android:parentActivityName=".ListaMascotasActivity"/>
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MisPublicacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MisSolicitudesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SolicitudesRecibidasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SolicitudAdopcionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaMascotasActivity"
             android:exported="false"
             android:parentActivityName=".CategoriasActivity" />

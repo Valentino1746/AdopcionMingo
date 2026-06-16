@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="8dp" app:cardCornerRadius="16dp" app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <TextView android:id="@+id/txtNombreSolicitante"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="@color/texto_principal" android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView android:id="@+id/txtEstadoSolicitud"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:paddingStart="10dp" android:paddingEnd="10dp"
+            android:paddingTop="3dp" android:paddingBottom="3dp"
+            android:layout_marginTop="4dp" android:textSize="12sp" android:textStyle="bold"
+            android:background="@drawable/ic_chip_background"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:layout_marginTop="12dp" android:layout_marginBottom="12dp"
+            android:background="@color/gris_hint"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Teléfono" android:textColor="@color/gris_subtitulo" android:textSize="11sp"/>
+                <TextView android:id="@+id/txtTelefonoSolicitante"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Vivienda" android:textColor="@color/gris_subtitulo" android:textSize="11sp"/>
+                <TextView android:id="@+id/txtVivienda"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="8dp">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Otras mascotas" android:textColor="@color/gris_subtitulo" android:textSize="11sp"/>
+                <TextView android:id="@+id/txtOtrasMascotas"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Niños en casa" android:textColor="@color/gris_subtitulo" android:textSize="11sp"/>
+                <TextView android:id="@+id/txtNinos"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="@color/texto_principal" android:textSize="14sp" android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Motivación" android:textColor="@color/gris_subtitulo"
+            android:textSize="11sp" android:layout_marginTop="12dp"/>
+        <TextView android:id="@+id/txtMotivacion"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="@color/texto_principal" android:textSize="14sp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Experiencia previa" android:textColor="@color/gris_subtitulo"
+            android:textSize="11sp" android:layout_marginTop="8dp"/>
+        <TextView android:id="@+id/txtExperiencia"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="@color/texto_principal" android:textSize="14sp"
+            android:layout_marginTop="2dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="16dp">
+
+            <Button android:id="@+id/btnAceptarSolicitud"
+                android:layout_width="0dp" android:layout_height="44dp"
+                android:layout_weight="1" android:layout_marginEnd="6dp"
+                android:text="✓ Aceptar" android:textColor="@color/white"
+                android:backgroundTint="@color/color_disponible"/>
+
+            <Button android:id="@+id/btnRechazarSolicitud"
+                android:layout_width="0dp" android:layout_height="44dp"
+                android:layout_weight="1" android:layout_marginStart="6dp"
+                android:text="✗ Rechazar" android:textColor="@color/white"
+                android:backgroundTint="@color/color_no_disponible"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

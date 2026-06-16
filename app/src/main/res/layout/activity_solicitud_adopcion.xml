@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_principal"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/txtNombreMascotaSolicitud"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textColor="@color/naranja_primario" android:textSize="22sp"
+            android:textStyle="bold" android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_login_card_background"
+            android:orientation="vertical" android:padding="24dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Teléfono de contacto *" android:textColor="@color/texto_principal"
+                android:textSize="14sp" android:textStyle="bold"/>
+            <EditText android:id="@+id/etTelefonoContacto" android:layout_width="match_parent"
+                android:layout_height="52dp" android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background" android:inputType="phone"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:hint="Tu número de teléfono" android:textColorHint="@color/gris_hint"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Tipo de vivienda" android:textColor="@color/texto_principal"
+                android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="14dp"/>
+            <Spinner android:id="@+id/spinnerTipoVivienda" android:layout_width="match_parent"
+                android:layout_height="52dp" android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:paddingStart="12dp" android:paddingEnd="12dp"
+                android:entries="@array/tipos_vivienda"/>
+
+            <CheckBox android:id="@+id/cbTieneOtrasMascotas" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginTop="14dp"
+                android:text="¿Tienes otras mascotas?" android:textColor="@color/texto_principal"/>
+
+            <CheckBox android:id="@+id/cbTieneNinos" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginTop="8dp"
+                android:text="¿Hay niños en casa?" android:textColor="@color/texto_principal"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Experiencia previa con mascotas" android:textColor="@color/texto_principal"
+                android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etExperienciaPrevia" android:layout_width="match_parent"
+                android:layout_height="80dp" android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:inputType="textMultiLine" android:gravity="top"
+                android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="12dp"
+                android:hint="Cuéntanos tu experiencia (opcional)"
+                android:textColorHint="@color/gris_hint"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="¿Por qué quieres adoptar? *" android:textColor="@color/texto_principal"
+                android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etMotivacion" android:layout_width="match_parent"
+                android:layout_height="100dp" android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:inputType="textMultiLine" android:gravity="top"
+                android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="12dp"
+                android:hint="Cuéntanos tu motivación para adoptar"
+                android:textColorHint="@color/gris_hint"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Mensaje adicional" android:textColor="@color/texto_principal"
+                android:textSize="14sp" android:textStyle="bold" android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etMensaje" android:layout_width="match_parent"
+                android:layout_height="80dp" android:layout_marginTop="6dp"
+                android:background="@drawable/ic_input_background"
+                android:inputType="textMultiLine" android:gravity="top"
+                android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="12dp"
+                android:hint="Algo más que quieras decirle al dueño (opcional)"
+                android:textColorHint="@color/gris_hint"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEnviarSolicitud"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:layout_marginTop="24dp" android:text="Enviar solicitud"
+                android:textColor="@color/white" android:textSize="16sp"
+                app:backgroundTint="@color/naranja_primario" app:cornerRadius="26dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelar"
+                android:layout_width="match_parent" android:layout_height="48dp"
+                android:layout_marginTop="8dp" android:text="Cancelar"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/gris_subtitulo" app:cornerRadius="24dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

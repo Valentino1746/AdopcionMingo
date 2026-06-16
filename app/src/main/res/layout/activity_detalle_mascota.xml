@@ -204,6 +204,19 @@
                     android:textColor="@color/gris_subtitulo"
                     android:textSize="13sp" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAdoptar"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:text="🐾 Quiero adoptarlo"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/naranja_primario"
+                    app:cornerRadius="26dp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

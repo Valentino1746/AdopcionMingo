@@ -71,6 +71,26 @@ class DetalleMascotaActivity : AppCompatActivity() {
         } else {
             imgFoto.setImageResource(fallbackRes)
         }
+
+        // Botón adoptar: solo si Disponible
+        val btnAdoptar = findViewById<com.google.android.material.button.MaterialButton>(
+            R.id.btnAdoptar)
+
+        if (mascota.estadoAdopcion == "Disponible") {
+            btnAdoptar.visibility = android.view.View.VISIBLE
+            btnAdoptar.setOnClickListener {
+                startActivity(
+                    android.content.Intent(this, SolicitudAdopcionActivity::class.java).apply {
+                        putExtra("idMascota", mascota.idMascota)
+                        putExtra("nombreMascota", mascota.nombre)
+                    }
+                )
+            }
+        } else {
+            btnAdoptar.visibility = android.view.View.GONE
+        }
+
+
     }
 
     companion object {
